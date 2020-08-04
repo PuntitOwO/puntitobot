@@ -6,7 +6,6 @@ import telebot
 bot = telebot.TeleBot(TOKEN)
 
 canal_id="-1001285680844"
-personal_id="684613007"
 
 @bot.message_handler(commands=["start", "help"])
 def send_welcome(message):
