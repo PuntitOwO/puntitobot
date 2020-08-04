@@ -1,5 +1,9 @@
+from dotenv import load_dotenv
+load_dotenv()
+import os
+TOKEN = os.getenv("TOKEN")
 import telebot
-bot = telebot.TeleBot("1164561903:AAGAhKaRU3QBSP9DKyrYZU7kqy5RCOA2KGc")
+bot = telebot.TeleBot(TOKEN)
 
 canal_id="-1001285680844"
 personal_id="684613007"
