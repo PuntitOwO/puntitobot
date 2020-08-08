@@ -7,7 +7,7 @@ bot = telebot.TeleBot(TOKEN)
 import sqlite3
 
 canal_id="-1001285680844"
-TABLE = "msg(msg_id integer primary key, original_sender integer, requested_by integer)"
+TABLE = "msg(msg_id INTEGER PRIMARY KEY, original_sender INTEGER, requested_by INTEGER)"
 
 def create_table(table):
     con = sqlite3.connect('FwBot.db')
