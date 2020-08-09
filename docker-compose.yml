@@ -1,0 +1,15 @@
+version: '3'
+services:
+
+  puntibot:
+    build: .
+    container_name: puntibot
+    restart: always
+    command:
+      - python
+      - -u
+      - PuntitoFwBot.py
+    volumes:
+      - ./FwBot.db:/FwBot.db
+    environment:
+      - TOKEN=${TOKEN}
