@@ -6,7 +6,7 @@ import telebot
 bot = telebot.TeleBot(TOKEN)
 import sqlite3
 
-canal_id="-1001285680844"
+canal_id=os.getenv("canal_id")
 TABLE = "msg(msg_id INTEGER PRIMARY KEY, original_sender INTEGER, requested_by INTEGER)"
 
 def create_table(table):
@@ -94,15 +94,19 @@ def forwardeo(message):
 
 @bot.message_handler(commands=["top"])
 def mensaje_topn(message):
-    num = message.text[5:].strip()
-    if num == "": num = "5"
+    bot_username = bot.get_me().username
+    if message.text in ["/top","/top@"+bot_username]:
+        m_text = "/top 5"
+    else:
+        m_text = message.text
+    num = telebot.util.extract_arguments(m_text).strip()
     if num.isdigit():
         if int(num)==0:
             bot.reply_to(message, "El Top 0 está vacío! \nQue extraño, ¿no?")
         elif int(num)==69:
             bot.reply_to(message, "Jjjjajajkshs dijiste el número gracioso")
-        elif int(num)>15:
-            bot.reply_to(message, "Soy un bot chiquito y si me pides más de 15 usuarios en el top, me saturo y exploto. Por favor, no lo hagas uwu")
+        elif int(num)>50:
+            bot.reply_to(message, "Soy un bot chiquito y si me pides más de 50 usuarios en el top, me saturo y exploto. Por favor, no lo hagas uwu")
         else:
             chat_id = message.chat.id
             tops = top_master(int(num))
@@ -127,7 +131,7 @@ def mensaje_topn(message):
             if not fl.is_integer():
                 bot.reply_to(message, "¿Realmente quieres ver a %s usuarios en el Top?" %fl)
             else:
-                bot.reply_to(message, "¿Por qué poner un 0 de decimal? ¿No ves que me confundes?")
+                bot.reply_to(message, "¿Por qué poner números así? ¿No ves que me confundes?")
 
 @bot.message_handler(commands=["mis_forwards"])
 def stats(message):
