@@ -158,5 +158,9 @@ def stats(message):
 def send_canal(message):
     bot.reply_to(message, "https://t.me/PuntitoForwarded")
 
+@bot.message_handler(commands=["hoho"])
+def hoho(message):
+    bot.forward_message(message.chat.id, canal_id, 235)
+
 bot.polling(none_stop=True)
 
